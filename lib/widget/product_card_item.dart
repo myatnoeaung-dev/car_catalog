@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'gradient_container.dart';
 
 class ProductCardItem extends StatelessWidget {
+  final String name;
   final VoidCallback onPressed;
   const ProductCardItem({
+    required this.name,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -41,15 +44,19 @@ class ProductCardItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                          "https://www.auto-data.net/images/f118/Tesla-Model-S-facelift-2021.jpg"),
-                    )),
+              Hero(
+
+                tag: name,
+                child: Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                            "https://www.auto-data.net/images/f118/Tesla-Model-S-facelift-2021.jpg"),
+                      )),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -96,4 +103,5 @@ class ProductCardItem extends StatelessWidget {
       ),
     );
   }
+
 }
