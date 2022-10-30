@@ -45,7 +45,7 @@ class ProductCardItem extends StatelessWidget {
                 ),
               ),
               Hero(
-
+                transitionOnUserGestures: true,
                 tag: name,
                 child: Container(
                   height: 100,

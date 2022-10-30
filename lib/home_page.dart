@@ -47,34 +47,36 @@ class HomePage extends StatelessWidget {
               return ProductCardItem(
                 name: "$index",
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ProductDetailPage(
-                                name: "$index",
-                              )));
                   // Navigator.push(
                   //     context,
-                  //     PageRouteBuilder(
-                  //         transitionDuration: Duration(milliseconds: 1700),
-                  //         pageBuilder:
-                  //             (context, animation, secondaryAnimation) =>
-                  //                 const ProductDetailPage(),
-                  //         transitionsBuilder:
-                  //             (context, animation, secondaryAnimation, child) {
-                  //           var fadeIn = Tween<double>(begin: 0, end: 1)
-                  //               .animate(CurvedAnimation(
-                  //                   curve: Interval(.7, 1), parent: animation));
-                  //           var fadeOut = Tween<double>(begin: 0, end: 1)
-                  //               .animate(CurvedAnimation(
-                  //                   curve: Interval(0, .2), parent: animation));
-                  //           return Stack(children: <Widget>[
-                  //             FadeTransition(
-                  //                 opacity: fadeOut,
-                  //                 child: Container(color: Colors.white)),
-                  //             FadeTransition(opacity: fadeIn, child: child)
-                  //           ]);
-                  //         }));
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ProductDetailPage(
+                  //               name: "$index",
+                  //             )));
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 1700),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  ProductDetailPage(
+                                    name: "$index",
+                                  ),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            var fadeIn = Tween<double>(begin: 0, end: 1)
+                                .animate(CurvedAnimation(
+                                    curve: Interval(.7, 1), parent: animation));
+                            var fadeOut = Tween<double>(begin: 0, end: 1)
+                                .animate(CurvedAnimation(
+                                    curve: Interval(0, .2), parent: animation));
+                            return Stack(children: <Widget>[
+                              FadeTransition(
+                                  opacity: fadeOut,
+                                  child: Container(color: Theme.of(context).colorScheme.background)),
+                              FadeTransition(opacity: fadeIn, child: child)
+                            ]);
+                          }));
                 },
               );
             }))
